@@ -42,7 +42,7 @@ public class EllipticCurveCryptography {
 	}
 	
 	/**
-	 * Mencari y yang cocok untuk suatu x dalam metode ...
+	 * Mencari y yang cocok untuk suatu x dalam metode Koblitz
 	 * x = m . k + i, dengan mengiterasi i dari 1
 	 * @param m integer representasi dari char plaintext
 	 * @return hasil y yang cocok
@@ -63,7 +63,7 @@ public class EllipticCurveCryptography {
 	}
 	
 	/**
-	 * Mengubah suatu huruf menjadi Point dengan metode ...
+	 * Mengubah suatu huruf menjadi Point dengan metode Koblitz
 	 * @param c huruf yang akan dirubah
 	 * @return Point hasil rubahan
 	 */
@@ -73,7 +73,7 @@ public class EllipticCurveCryptography {
 	}
 	
 	/**
-	 * Mengubah Point kembali menjadi huruf dengan metode ...
+	 * Mengubah Point kembali menjadi huruf dengan metode Koblitz
 	 * @param q Point yang akan dirubah
 	 * @return huruf hasil rubahan
 	 */
