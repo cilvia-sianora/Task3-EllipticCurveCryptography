@@ -5,52 +5,58 @@ package ECC;
  * @author Cilvia
  */
 public class Point {
-	private int x;
-	private int y;
+	private long x;
+	private long y;
 	
 	Point(){
 		x = 0;
 		y = 0;
 	}
 	
-	private void setX(int x){
+	public void setX(long x){
 		this.x = x;
 	}
 	
-	private void setY(int y){
+	public void setY(long y){
 		this.y = y;
 	}
 	
-	private int getY(){
+	public long getY(){
 		return y;
 	}
 	
-	private int getX(){
+	public long getX(){
 		return x;
 	}
 	
 	/**
 	 * Melakukan operasi pengurangan dengan Point lain
-	 * Menggunakan rumus yang ada dalam slide kuliah (P + Q = R)
+	 * Menggunakan rumus yang ada dalam slide kuliah (P - Q = R)
 	 * @param q Point yang mengurangi
 	 * @param p angka modulo
 	 * @return Point hasil pengurangan
 	 */
-	public Point substract(Point q, int p){
+	public Point substract(Point q, long p){
 		
-		return null;
+		Point point = new Point();
+		point.setX(x-q.getX());
+		point.setY(y-q.getY());
+		return point;
 	}
 	
 	/**
 	 * Melakukan operasi penjumlahan dengan Point lain
-	 * Menggunakan rumus yang ada dalam slide kuliah (P - Q = R)
+	 * Menggunakan rumus yang ada dalam slide kuliah (P + Q = R)
 	 * @param q Point yang menambahkan
 	 * @param p angka modulo
 	 * @return Point hasil penjumlahan
 	 */
-	public Point add(Point q, int p){
+	public Point add(Point q, long p){
 		
-		return null;
+		Point point = new Point();
+		point.setX(x+q.getX());
+		point.setY(y+q.getY());
+		return point;
 	}
 	
 	/**
@@ -59,9 +65,12 @@ public class Point {
 	 * @param p angka modulo
 	 * @return hasil penggandaan
 	 */
-	public Point doublePoint(int p){
+	public Point doublePoint(long p){
 		
-		return null;
+		Point point = new Point();
+		point.setX(2*x);
+		point.setY(2*y);
+		return point;
 	}
 	
 	/**
@@ -71,8 +80,15 @@ public class Point {
 	 * @param p angka modulo
 	 * @return Point hasil perkalian
 	 */
-	public Point multiplicate(int k, int p){
+	public Point multiplicate(long k, long p){
 		
-		return null;
+		Point point = new Point();
+		point.setX(x*k);
+		point.setY(y*k);
+		return point;
+	}
+	
+	public String toString(){
+		return "("+x+","+y+")";
 	}
 }
