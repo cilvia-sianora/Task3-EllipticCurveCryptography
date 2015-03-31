@@ -108,6 +108,7 @@ public class EllipticCurveCryptography {
 		}
 		System.out.println(ellipticGroup.size());
 		G = ellipticGroup.get(4);
+		System.out.println("G="+G);
 	}
 	
 	/**
@@ -131,9 +132,11 @@ public class EllipticCurveCryptography {
 		long maxRange = ellipticGroup.size(); // Batas atas random
 		
 		// Membangkitkan private key
-		privateKeyA = minRange + (long)(random.nextDouble()*(maxRange - minRange));
-		privateKeyB = minRange + (long)(random.nextDouble()*(maxRange - minRange));
-		
+//		privateKeyA = minRange + (long)(random.nextDouble()*(maxRange - minRange));
+//		privateKeyB = minRange + (long)(random.nextDouble()*(maxRange - minRange));
+		privateKeyA = 2;
+		privateKeyB = 3;
+				
 		// Membangkitkan public key
 		publicKeyA = G.multiplicate(G,privateKeyA,a,p);
 		publicKeyB = G.multiplicate(G,privateKeyB,a,p);
@@ -261,15 +264,21 @@ public class EllipticCurveCryptography {
 		long maxRange = p-1; // Batas atas random
 		Random random = new Random();
 		long ka = minRange + (long)(random.nextDouble()*(maxRange - minRange));
+		System.out.println("ka="+ka);
 		
 		// Melakukan enkripsi dengan pengulangan
 		for(int i=0;i<plaintext.length();i++){
+			System.out.println("-"+i+" "+plaintext.charAt(i)+"-");
 			// Encoding plaintext
 			pm = encode(plaintext.charAt(i));
+			System.out.println("plain="+pm);
 			
 			// Melakukan enkripsi
 			cipherpoint[0] = G.multiplicate(G,ka,a,p);
 			cipherpoint[1] = pm.add(publicKeyB.multiplicate(pm,ka,a,p), p);
+			
+			System.out.println("Pasangan1="+cipherpoint[0]);
+			System.out.println("Pasangan2="+cipherpoint[1]);
 			
 			// Memasukkan ke ciphertext
 			if(i == 0){ // Point pertama selalu sama, jadi ditaruh sekali di awal ciphertext
@@ -278,7 +287,10 @@ public class EllipticCurveCryptography {
 			}
 			ciphertext += Hex.LongToHex(cipherpoint[1].getX());
 			ciphertext += Hex.LongToHex(cipherpoint[1].getY());	
+			
+			System.out.println("ciphertext"+ciphertext);
 		}
+		System.out.println("FINISHED ENCRYPT");
 		System.out.println("ciphertext="+ciphertext);
 	}
 	
