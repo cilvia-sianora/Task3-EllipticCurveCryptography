@@ -11,7 +11,6 @@ package ECC;
  * @author Cilvia
  */
 public class ECCMain {
-
 	/**
 	 * @param args 
 	 */
@@ -25,11 +24,12 @@ public class ECCMain {
 		ECC.findEllipticGroup();
 		System.out.println("mau generate key");
 		ECC.generateKey();
-//		ECC.encrypt();
-//		ECC.decrypt();
+		ECC.encrypt();
+		ECC.decrypt();
 		System.out.println("-GET KEY FROM FILE-");
 		ECC.getKeyFromFile("privateKey.txt","publicKey.txt");
 		
+
 	}
 	
 }

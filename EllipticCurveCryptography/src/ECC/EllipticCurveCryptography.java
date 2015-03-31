@@ -133,8 +133,8 @@ public class EllipticCurveCryptography {
 		privateKeyB = minRange + (long)(random.nextDouble()*(maxRange - minRange));
 		
 		// Membangkitkan public key
-		publicKeyA = G.multiplicate(privateKeyA, p);
-		publicKeyB = G.multiplicate(privateKeyB, p);
+		publicKeyA = G.multiplicate(G,privateKeyA,a,p);
+		publicKeyB = G.multiplicate(G,privateKeyB,a,p);
 		
 		// Tulis di file eksternal
 		PrintWriter writer = null;
@@ -265,17 +265,18 @@ public class EllipticCurveCryptography {
 			pm = encode(plaintext.charAt(i));
 			
 			// Melakukan enkripsi
-			cipherpoint[0] = G.multiplicate(ka, p);
-			cipherpoint[1] = pm.add(publicKeyB.multiplicate(ka, p), p);
+			cipherpoint[0] = G.multiplicate(G,ka,a,p);
+			cipherpoint[1] = pm.add(publicKeyB.multiplicate(pm,ka,a,p), p);
 			
 			// Memasukkan ke ciphertext
 			if(i == 0){ // Point pertama selalu sama, jadi ditaruh sekali di awal ciphertext
-				ciphertext += Hex.fromLong(cipherpoint[0].getX());
-				ciphertext += Hex.fromLong(cipherpoint[0].getY());
+				ciphertext += Hex.LongToHex(cipherpoint[0].getX());
+				ciphertext += Hex.LongToHex(cipherpoint[0].getY());
 			}
-			ciphertext += Hex.fromLong(cipherpoint[1].getX());
-			ciphertext += Hex.fromLong(cipherpoint[1].getY());	
+			ciphertext += Hex.LongToHex(cipherpoint[1].getX());
+			ciphertext += Hex.LongToHex(cipherpoint[1].getY());	
 		}
+		System.out.println(ciphertext);
 	}
 	
 	
@@ -290,19 +291,19 @@ public class EllipticCurveCryptography {
 		Point p1 = new Point(); // Point pertama dalam pasangan cipherpoint
 		
 		// Mengambil Point pertama cipherpoint dalam ciphertext hexadecimal
-		p1.setX(Hex.toLong(ciphertext.substring(0,16)));
-		p1.setY(Hex.toLong(ciphertext.substring(16,32)));
+		p1.setX(Hex.HexToLong(ciphertext.substring(0,16)));
+		p1.setY(Hex.HexToLong(ciphertext.substring(16,32)));
 		ciphertext = ciphertext.substring(32);
 		
 		// Melakukan dekripsi selama ciphertext belum habis
 		while(!ciphertext.isEmpty()){
 			// Mengambil Point kedua cipherpoint dalam ciphertext hexadecimal
-			p2.setX(Hex.toLong(ciphertext.substring(0,16)));
-			p2.setY(Hex.toLong(ciphertext.substring(16,32)));
+			p2.setX(Hex.HexToLong(ciphertext.substring(0,16)));
+			p2.setY(Hex.HexToLong(ciphertext.substring(16,32)));
 			ciphertext = ciphertext.substring(32);
 			
 			// Melakukan perhitungan dekripsi  
-			pm = p2.substract(p1.multiplicate(privateKeyB, p), p);
+			pm = p2.substract(p1.multiplicate(p1,privateKeyB,a,p), p);
 			
 			// Men-decode Point hasil dekripsi
 			plaintext += decode(pm);
