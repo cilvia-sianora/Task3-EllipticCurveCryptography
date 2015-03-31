@@ -7,39 +7,28 @@
 package ECC;
 
 /**
- *
- * @author Anggi
+ * 
+ * @author Cilvia
  */
 public class ECCMain {
 
 	/**
-	 * @param args the command line arguments
+	 * @param args 
 	 */
 	public static void main(String[] args) {
 		EllipticCurveCryptography ECC = new EllipticCurveCryptography();
 		
-		System.out.println(Integer.MAX_VALUE);
-		System.out.println(Long.MAX_VALUE);
 		
 		ECC.setPlaintext("ABC");
-		ECC.init();
-		ECC.encrypt();
-		
-//		Point p = new Point();
-//		p.setX(1342);
-//		p.setY(104);
-//		System.out.println(ECC.decode(p));
-		
-//		ECC.setPlaintext("ABC");
-//		ECC.init();
+		ECC.init(-1,188,751,20);
+		System.out.println("mau cari grup eliptik");
+		ECC.findEllipticGroup();
+		System.out.println("mau generate key");
+		ECC.generateKey();
 //		ECC.encrypt();
-		//System.out.println(ECC.findY(11));
-		
-//		char c = 'A';
-//		long ascii = (long) c;
-//		System.out.println(ascii);
-		
-		//System.out.println(Long.toHexString(2147483648));
+//		ECC.decrypt();
+		System.out.println("-GET KEY FROM FILE-");
+		ECC.getKeyFromFile("privateKey.txt","publicKey.txt");
 		
 	}
 	
