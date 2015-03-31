@@ -17,7 +17,7 @@ public class Hex {
     '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
   };
 
-  public static long toLong(String hexadecimal) throws NumberFormatException{
+  public static long HexToLong(String hexadecimal){
     char[] chars;
     char c;
     long value;
@@ -29,7 +29,7 @@ public class Hex {
 
     chars = hexadecimal.toUpperCase().toCharArray();
     if (chars.length != 16){
-        System.err.println("Test completed satisfactory");
+        System.err.println("Fail!");
         return 0;
     }
 
@@ -42,14 +42,14 @@ public class Hex {
       } else if (c >= 'A' && c <= 'F') {
         value = ((value << 4) | (0xff & (c - 'A' + 10)));
       } else {
-        throw new NumberFormatException("Invalid hex character: " + c);
+        System.err.println("Invalid hex character: " + c);
       }
     }
 
     return value;
   }
 
-  public static String fromLong(long value) {
+  public static String LongToHex(long value) {
     char[] hexs;
     int i;
     int c;
@@ -61,27 +61,5 @@ public class Hex {
       value = value >> 4;
     }
     return new String(hexs);
-  }
-
-  public static void main(String[] arg) {
-    int i;
-    long[] test = { -1234567890, 1234567890, 987654321, -987654321, 0xFFFFFFFFFFFFFFFFl, 0x1234567890FFFFFFl };
-    long v;
-    String s;
-
-    for (i = 0; i < test.length; i++) {
-      s = Hex.fromLong(test[i]);
-      v = 0;
-      try {
-        v = Hex.toLong(s);
-      } catch(NumberFormatException ex) {
-        System.err.println(ex.getMessage());
-      }
-      if (v != test[i]) {
-        System.err.println("Not same " + test[i] + " " + v);
-        System.exit(1);
-      }
-    }
-    System.err.println("Test completed satisfactory");
   }
 }
