@@ -73,7 +73,7 @@ public class Point {
 				temp = (val_1*val_2) % p;
 				break;
 		}
-		System.out.println(val_2);
+//		System.out.println(val_2);
 		return temp;
 	}
 
@@ -89,7 +89,7 @@ public class Point {
 				}
 			}
 		}
-		System.out.println(p);
+//		System.out.println(p);
 		temp = (val_1*val_2) % p;
 		return temp;
 	}
@@ -120,7 +120,7 @@ public class Point {
 		p = pInput;
 		Point R = new Point();
 		long lambda = Gradient(q, "+");
-		System.out.println("lambda:" + lambda);
+		//System.out.println("lambda:" + lambda);
 		R.x = ((long) pow(lambda,2) - x - q.x) % p; while (R.x<0) R.x += p;
 		R.y = (lambda*(x-R.x) - y) % p; while (R.y<0) R.y += p;
 		R.p = p;
@@ -138,13 +138,13 @@ public class Point {
 		p = pInput;
 		Point R = new Point();
 		long lambda = Gradient(A);
-		System.out.println("asdas " + lambda);
+		//System.out.println("asdas " + lambda);
 
 		R.x = ((long) pow(lambda,2) - 2*x) % p; if (R.x<0) R.x += p;
 		R.y = (lambda*(x-R.x) - y) % p; if (R.y<0) R.y += p;
 		R.p = p;
-		System.out.println("double x: " + R.x);
-		System.out.println("double y: " + R.y);
+//		System.out.println("double x: " + R.x);
+//		System.out.println("double y: " + R.y);
 		return R;
 	}
         
@@ -172,18 +172,18 @@ public class Point {
 			}
 			k /= 2;
 			R = R.doublePoint(A,p);
-			System.out.println("oi: " + R.x);
-			System.out.println("oi: " + R.y);
+//			System.out.println("oi: " + R.x);
+//			System.out.println("oi: " + R.y);
 			if (k==1 || k==0){
-				System.out.println("count_temp " + count_temp);
+//				System.out.println("count_temp " + count_temp);
 				stop = true;
 			}
 		}
 		if (count_temp==0){
 			return R;
 		} else{
-			System.out.println("last: " + R.x);
-			System.out.println("last: " + R.y);
+//			System.out.println("last: " + R.x);
+//			System.out.println("last: " + R.y);
 			for (int j = 0; j < count_temp; j++) {
 				R = R.add(r,p);
 			}

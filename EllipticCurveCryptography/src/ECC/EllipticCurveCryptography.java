@@ -77,8 +77,9 @@ public class EllipticCurveCryptography {
 		this.p = p; // input user
 		
 		// G harusnya diambil dari grup eliptik (list point di ellips)
-		G.setX(50); 
-		G.setY(100);
+//		G.setX(50); 
+//		G.setY(100);
+		//G = ellipticGroup.get(4);
 		
 //		privateKeyA = 2;
 //		privateKeyB = 3;
@@ -91,11 +92,11 @@ public class EllipticCurveCryptography {
 	 * Precondition: harus melakukan prosedur init() terlebih dahulu
 	 */
 	public void findEllipticGroup(){
-		System.out.println("p="+p);
+		//System.out.println("p="+p);
 		long y;
 		Point pTemp = new Point();
 		for(long x=0;x<p;x++){
-			System.out.println("x="+x);
+			//System.out.println("x="+x);
 			y = isExistY(x);
 			if(y != -1){ // ada y yang memenuhi persamaan ellips
 				pTemp.setX(x);
@@ -106,6 +107,7 @@ public class EllipticCurveCryptography {
 			}
 		}
 		System.out.println(ellipticGroup.size());
+		G = ellipticGroup.get(4);
 	}
 	
 	/**
@@ -200,7 +202,7 @@ public class EllipticCurveCryptography {
 			} else {
 				y++;
 			}
-		}while(!found && yKuadrat < Long.MAX_VALUE); // selama belum ketemu dan belum mencapai max
+		}while(!found && yKuadrat < Integer.MAX_VALUE); // selama belum ketemu dan belum mencapai max
 		
 		if(!found)
 			return -1;
@@ -247,6 +249,7 @@ public class EllipticCurveCryptography {
 	 * Melakukan enkripsi berdasarkan Elliptic Curve Cryptography El Gamal
 	 */
 	public void encrypt(){
+		System.out.println("-ENCRYPT-");
 		ciphertext = "";
 		Point pm = new Point(); // Point plaintext hasil encoding
 		Point[] cipherpoint = new Point[2]; // pasangan Point hasil enkripsi
@@ -276,7 +279,7 @@ public class EllipticCurveCryptography {
 			ciphertext += Hex.LongToHex(cipherpoint[1].getX());
 			ciphertext += Hex.LongToHex(cipherpoint[1].getY());	
 		}
-		System.out.println(ciphertext);
+		System.out.println("ciphertext="+ciphertext);
 	}
 	
 	
