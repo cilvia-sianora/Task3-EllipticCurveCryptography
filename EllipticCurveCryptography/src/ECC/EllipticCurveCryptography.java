@@ -173,13 +173,13 @@ public class EllipticCurveCryptography {
 			while(scan.hasNextLong()){
 			   privateKeyA = scan.nextLong();
 			   privateKeyB = scan.nextLong();
+			   System.out.println(privateKeyA + " "+ privateKeyB);
 			}
 			// Mengambil public key
 			scan = new Scanner(new File(publicLocation));
-			while(scan.hasNextLong()){
-				System.out.println(scan.nextLong());
-//			   publicKeyA.setX(scan.nextLong());
-//			   publicKeyB = scan.nextLong();
+			while(scan.hasNext()){
+				publicKeyA = publicKeyA.stringToPoint(scan.nextLine());
+				publicKeyB = publicKeyB.stringToPoint(scan.nextLine());
 			}
 		} catch(Exception e){
 		}
@@ -275,7 +275,7 @@ public class EllipticCurveCryptography {
 			
 			// Melakukan enkripsi
 			cipherpoint[0] = G.multiplicate(G,ka,a,p);
-			cipherpoint[1] = pm.add(publicKeyB.multiplicate(pm,ka,a,p), p);
+			cipherpoint[1] = pm.add(publicKeyB.multiplicate(publicKeyB,ka,a,p), p);
 			
 			System.out.println("Pasangan1="+cipherpoint[0]);
 			System.out.println("Pasangan2="+cipherpoint[1]);

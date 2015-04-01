@@ -194,5 +194,13 @@ public class Point {
 	public String toString(){
 		return "("+x+","+y+")";
 	}
+	
+	public Point stringToPoint(String text){
+		Point point = new Point();
+		text = text.substring(1,text.length()-1);
+		point.x = Long.valueOf(text.substring(0,text.indexOf(',')));
+		point.y = Long.valueOf(text.substring(text.indexOf(',')+1));
+		return point;
+	}
 
 }

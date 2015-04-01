@@ -17,6 +17,7 @@ public class ECCMain {
 	public static void main(String[] args) {
 		EllipticCurveCryptography ECC = new EllipticCurveCryptography();
 		
+		Point p = new Point();
 		
 		ECC.setPlaintext("ABC");
 		ECC.init(-1,188,751,20);
@@ -27,9 +28,9 @@ public class ECCMain {
 		ECC.encrypt();
 		ECC.decrypt();
 		System.out.println("-GET KEY FROM FILE-");
-		ECC.getKeyFromFile("privateKey.txt","publicKey.txt");
+		ECC.getKeyFromFile("C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\Task3-EllipticCurveCryptography\\EllipticCurveCryptography\\privateKey.txt","C:\\Users\\Anggi\\Documents\\kuliah\\Semester6\\Kripto\\Task3-EllipticCurveCryptography\\EllipticCurveCryptography\\publicKey.txt");
 		
-
+		p.stringToPoint("(123,456)");
 	}
 	
 }
